@@ -192,6 +192,14 @@ nav.topnav {
   text-decoration:none; border-radius:6px;
   box-shadow: 0 0 24px var(--acc-glow);
   transition: transform .15s ease, box-shadow .25s ease;
+  position:relative; overflow:hidden;
+}
+.nav-cta::before {
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,0.18) 50%,transparent 100%);
+  transform:translateX(-150%);
+  animation:cta-shimmer 3s ease 2s infinite;
+  pointer-events:none;
 }
 .nav-cta:hover { transform:translateY(-1px); }
 .nav-cta .arrow { display:inline-block; transition:transform .2s; }
@@ -635,17 +643,25 @@ footer { padding: 64px 0 28px; border-top: 1px solid var(--rule); position:relat
 /* ── Floating Order Button ── */
 .fab-order {
   display: none;
-  position: fixed; right: 20px; bottom: 20px; z-index: 90;
+  position: fixed; right: 16px; bottom: 16px; z-index: 90;
   align-items: center;
   background: var(--acc); color: #fff;
-  border-radius: 8px; padding: 13px 20px;
-  font-family: var(--font-m); font-size: 11px; font-weight: 600;
+  border-radius: 7px; padding: 10px 16px;
+  font-family: var(--font-m); font-size: 10px; font-weight: 600;
   letter-spacing: .08em; text-transform: uppercase;
   text-decoration: none; white-space: nowrap;
   box-shadow: 0 4px 24px var(--acc-glow);
   transition: transform .2s ease, box-shadow .2s ease;
+  overflow: hidden;
 }
-.fab-order:hover { transform: translateY(-2px); box-shadow: 0 8px 32px var(--acc-glow); }
+.fab-order::before {
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,0.18) 50%,transparent 100%);
+  transform:translateX(-150%);
+  animation:cta-shimmer 3s ease 2s infinite;
+  pointer-events:none;
+}
+.fab-order:hover { transform: translateY(-2px); box-shadow: 0 8px 28px var(--acc-glow); }
 
 
 /* ── Hamburger + mobile drawer ── */
@@ -858,18 +874,25 @@ footer { padding: 64px 0 28px; border-top: 1px solid var(--rule); position:relat
 }
 
 /* ── Accessibility: contrast fixes (WCAG AA) ── */
-/* White text on --acc (#FF3B47) = 3.49:1, fails 4.5:1. Use #DA3245 = 4.77:1 ✓ */
+/* White text on --acc (#FF3B47) = 3.49:1, fails 4.5:1. Use #C4223A = 5.2:1 ✓ */
 .btn-primary, .nav-cta, .fab-order {
-  background: #DA3245;
+  background: #C4223A;
 }
 .btn-primary {
-  box-shadow: 0 0 0 1px #DA3245 inset, 0 0 40px rgba(218,50,69,0.55);
+  box-shadow: 0 0 0 1px #C4223A inset, 0 0 32px rgba(196,34,58,0.40);
 }
 .nav-cta {
-  box-shadow: 0 0 24px rgba(218,50,69,0.55);
+  box-shadow: 0 0 16px rgba(196,34,58,0.30);
 }
 .fab-order {
-  box-shadow: 0 4px 24px rgba(218,50,69,0.55);
+  box-shadow: 0 4px 18px rgba(196,34,58,0.30);
+}
+
+/* ── CTA shimmer: световой проход раз в 5 секунд ── */
+@keyframes cta-shimmer {
+  0%   { transform: translateX(-150%); }
+  47%  { transform: translateX(200%); }
+  100% { transform: translateX(200%); }
 }
 
 /* ── Mobile performance: отключаем тяжёлые эффекты ── */
