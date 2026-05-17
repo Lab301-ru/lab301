@@ -15,7 +15,7 @@
   --ink-3:     #888E99;
   --rule:      rgba(255,255,255,0.09);
   --rule-2:    rgba(255,255,255,0.16);
-  --grid:      rgba(255,255,255,0.045);
+  --grid:      rgba(255,255,255,0.032);
 
   --acc:       #FF3B47;
   --acc-2:     #FFE5E2;
@@ -72,13 +72,14 @@ a { color:inherit; }
 .grain {
   position:fixed; inset:0; z-index:1; pointer-events:none;
   background-image: radial-gradient(rgba(255,255,255,0.025) 1px, transparent 1px);
-  background-size: 3px 3px; opacity:0.5; mix-blend-mode:overlay;
+  background-size: 3px 3px; opacity:0.32; mix-blend-mode:overlay;
 }
 .bloom {
   position:fixed; inset:0; z-index:0; pointer-events:none;
   background:
     radial-gradient(circle 600px at 80% -10%, var(--acc-soft), transparent 60%),
     radial-gradient(circle 700px at 0% 100%, var(--acc-soft), transparent 60%);
+  opacity: 0.72;
   transition:background .5s ease;
 }
 
@@ -177,12 +178,18 @@ nav.topnav {
 .nav-links a:hover::after { transform: scaleX(1); }
 .nav-links a[aria-current="page"] { color:var(--ink); }
 .nav-links a[aria-current="page"]::after { transform: scaleX(1); }
-.nav-cta {
+/* Desktop right cluster: [toggle] [CTA] */
+.nav-right {
   grid-area: right; justify-self: end;
+  display: flex; align-items: center; gap: 10px;
+}
+@media (max-width: 1280px) { .nav-right { display: none; } }
+
+.nav-cta {
   display:inline-flex; align-items:center; gap:10px;
   font-family:var(--font-m); font-size:13px; font-weight:600; letter-spacing:.14em; text-transform:uppercase;
   color:#fff; background:var(--acc); padding: 12px 20px;
-  text-decoration:none; border-radius:4px;
+  text-decoration:none; border-radius:6px;
   box-shadow: 0 0 24px var(--acc-glow);
   transition: transform .15s ease, box-shadow .25s ease;
 }
@@ -240,6 +247,9 @@ nav.topnav {
   display:flex; justify-content:space-between; align-items:baseline;
   padding-bottom:24px; border-bottom:1px solid var(--rule); margin-bottom: 48px;
   font-family:var(--font-m); font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3);
+}
+@media (max-width: 768px) {
+  .page-head .coord { padding-top:8px; padding-bottom:8px; margin-bottom:20px; }
 }
 .page-head .coord b { color:var(--ink); font-weight:500; }
 .page-head .coord .sig { color:var(--acc); }
@@ -379,6 +389,7 @@ nav.topnav {
   line-height: 1;
 }
 @media (max-width:1000px) { .step:not(:first-child)::before { display:none; } }
+@media (max-width:1000px) { .step::after { display:none; } }
 
 /* ── Archive cards ── */
 .arc-grid { display:grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
@@ -508,6 +519,13 @@ nav.topnav {
 .signal-sub { margin-top: 24px; font-size: 16px; line-height:1.55; color:var(--ink-2); max-width: 52ch; }
 .signal-cta { display:flex; flex-direction:column; gap:12px; min-width: 260px; }
 .signal-cta .btn-primary, .signal-cta .btn-secondary { justify-content:space-between; padding:18px 22px; font-size:13px; }
+.signal-cta .btn-secondary:hover,
+.signal-cta .btn-secondary:focus-visible {
+  border-color: var(--acc);
+  background: rgba(232,32,47,0.08);
+  box-shadow: 0 0 18px rgba(232,32,47,0.18);
+  color: #fff;
+}
 
 /* ── Footer ── */
 footer { padding: 64px 0 28px; border-top: 1px solid var(--rule); position:relative; z-index:2; }
@@ -588,7 +606,7 @@ footer { padding: 64px 0 28px; border-top: 1px solid var(--rule); position:relat
 /* ── Background toggle button ── */
 .bg-toggle {
   position: fixed; right: 20px; bottom: 20px; z-index: 89;
-  width: 42px; height: 42px; border-radius: 50%;
+  width: 42px; height: 42px; border-radius: 6px;
   background: var(--surface); border: 1px solid var(--rule-2);
   cursor: pointer; display: flex; align-items: center; justify-content: center;
   color: var(--ink-2);
@@ -597,15 +615,21 @@ footer { padding: 64px 0 28px; border-top: 1px solid var(--rule); position:relat
 }
 .bg-toggle:hover { border-color: var(--acc); color: var(--ink); transform: scale(1.08); }
 
+/* Floating bg-toggle — убран навсегда */
+.bg-toggle:not(.nav-bg-toggle) { display: none; }
+
 /* In mobile nav — inline next to hamburger */
 .nav-mobile-controls { grid-area: right; justify-self: end; display: none; align-items: center; gap: 8px; }
 .nav-bg-toggle {
   position: static; box-shadow: none;
   width: 42px; height: 42px;
 }
+/* Desktop nav toggle: растянуть по высоте CTA, добавить отступ */
+.nav-right { gap: 20px; }
+.nav-right .nav-bg-toggle { align-self: stretch; height: auto; }
 @media (max-width: 1280px) {
+  .nav-right { gap: 10px; }
   .nav-mobile-controls { display: flex; }
-  .bg-toggle:not(.nav-bg-toggle) { display: none; } /* hide the floating one on tablets/mobile */
 }
 
 /* ── Floating Order Button ── */
@@ -614,7 +638,7 @@ footer { padding: 64px 0 28px; border-top: 1px solid var(--rule); position:relat
   position: fixed; right: 20px; bottom: 20px; z-index: 90;
   align-items: center;
   background: var(--acc); color: #fff;
-  border-radius: 50px; padding: 11px 18px;
+  border-radius: 8px; padding: 13px 20px;
   font-family: var(--font-m); font-size: 11px; font-weight: 600;
   letter-spacing: .08em; text-transform: uppercase;
   text-decoration: none; white-space: nowrap;
@@ -681,6 +705,13 @@ footer { padding: 64px 0 28px; border-top: 1px solid var(--rule); position:relat
 .drawer-links a[aria-current="page"]::after { transform: scaleX(1); }
 .drawer-cta { display:flex; flex-direction:column; gap:10px; margin-top: 16px; padding-top: 24px; border-top: 1px solid var(--rule); }
 .drawer-cta a { justify-content:space-between; padding: 16px 18px; font-size: 12px; }
+.drawer-cta .btn-secondary:hover,
+.drawer-cta .btn-secondary:active {
+  border-color: var(--acc);
+  background: rgba(232,32,47,0.08);
+  box-shadow: 0 0 16px rgba(232,32,47,0.18);
+  color: #fff;
+}
 
 @media (max-width: 1280px) {
   .topnav .nav-cta { display: none; }
@@ -688,7 +719,7 @@ footer { padding: 64px 0 28px; border-top: 1px solid var(--rule); position:relat
   .fab-order { display:flex; }
 }
 @media (max-width: 720px) {
-  .mobile-drawer { top: 116px; }
+  .mobile-drawer { top: 205px; }
 }
 @media (min-width: 1281px) {
   .mobile-drawer { display:none !important; }
@@ -879,4 +910,7 @@ footer { padding: 64px 0 28px; border-top: 1px solid var(--rule); position:relat
 
   /* Pulse анимации — экономим CPU/GPU */
   .ribbon .live::before { animation: none; }
+
+  /* Дата в ленте — на мобиле показываем */
+  .ribbon .mono { display: inline; }
 }

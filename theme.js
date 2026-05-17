@@ -1,16 +1,16 @@
 /* LAB301 / OPERATIONS — shared chrome + palette controls */
 (function(){
-  // ── Yandex Metrika 109208035 — deferred after load to avoid TBT impact
+  // ── Yandex Metrika 109259274 — deferred after load to avoid TBT impact
   window.addEventListener('load', function() {
     setTimeout(function() {
       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
       m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}
       k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-      (window,document,'script','https://mc.yandex.ru/metrika/tag.js','ym');
-      ym(109208035,'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:false});
+      (window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=109259274','ym');
+      ym(109259274,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:'dataLayer',referrer:document.referrer,url:location.href,accurateTrackBounce:true,trackLinks:true});
       if(!document.querySelector('noscript[data-ym]')){
         var ns=document.createElement('noscript');ns.setAttribute('data-ym','');
-        ns.innerHTML='<div><img src="https://mc.yandex.ru/watch/109208035" style="position:absolute;left:-9999px" alt=""/></div>';
+        ns.innerHTML='<div><img src="https://mc.yandex.ru/watch/109259274" style="position:absolute;left:-9999px" alt=""/></div>';
         document.body.appendChild(ns);
       }
     }, 3000);
@@ -119,13 +119,18 @@
   const nav = `
     <nav class="topnav">
       <a class="logo" href="index.html" aria-label="${t.backHome}">
-        <img src="lab301-logo-mobile.avif" alt="LAB301" class="logo-img" width="1200" height="630" fetchpriority="high" decoding="async" />
+        <img src="guga.avif" alt="LAB301" class="logo-img" width="1200" height="630" fetchpriority="high" decoding="async" />
         <span class="dim"><span class="dim-l1">AI automation&amp;</span><span class="dim-l2">Digital studio</span></span>
       </a>
       <ul class="nav-links">${navLinks}</ul>
-      <a class="nav-cta" href="https://t.me/Judgeopenclawbot" target="_blank">${t.cta} <span class="arrow">→</span></a>
-      <div class="nav-mobile-controls">
+      <div class="nav-right">
         <button class="bg-toggle nav-bg-toggle" id="bgToggle" aria-label="Сменить фон" title="Тёмный / Чёрный фон">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13V1.5z" fill="currentColor"/></svg>
+        </button>
+        <a class="nav-cta" href="thankyou.html?to=https://t.me/Judgeopenclawbot">${t.cta} <span class="arrow">→</span></a>
+      </div>
+      <div class="nav-mobile-controls">
+        <button class="bg-toggle nav-bg-toggle" aria-label="Сменить фон" title="Тёмный / Чёрный фон">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13V1.5z" fill="currentColor"/></svg>
         </button>
         <button class="hamburger" id="hamburger" aria-label="${t.menuOpen}" aria-expanded="false">
@@ -136,12 +141,12 @@
     <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
       <ul class="drawer-links">${drawerLinks}</ul>
       <div class="drawer-cta">
-        <a class="btn-primary" href="https://t.me/Judgeopenclawbot" target="_blank">Заказать сайт <span>→</span></a>
+        <a class="btn-primary" href="thankyou.html?to=https://t.me/Judgeopenclawbot">Заказать сайт <span>→</span></a>
         <a class="btn-secondary" href="tel:+79996708772">+7 999 670 87 72</a>
         <a class="btn-secondary" href="mailto:lab.301@ya.ru">lab.301@ya.ru</a>
       </div>
     </div>
-    <a class="fab-order" href="https://t.me/Judgeopenclawbot" target="_blank" aria-label="Заказать сайт">
+    <a class="fab-order" href="thankyou.html?to=https://t.me/Judgeopenclawbot" aria-label="Заказать сайт">
       <span class="fab-text">Заказать сайт</span>
     </a>`;
 
@@ -166,6 +171,7 @@
               <li><a href="ai-assistant.html">${t.ai}</a></li>
               <li><a href="process.html">${t.process}</a></li>
               <li><a href="cases.html">${t.cases}</a></li>
+              <li><a href="privacy.html">Конфиденциальность</a></li>
               <li><a href="faq.html">${t.faq}</a></li>
             </ul>
           </div>
@@ -185,7 +191,7 @@
           <div class="f-col">
             <h5>${t.fLink}</h5>
             <ul>
-              <li><a href="https://t.me/yuriybyg">Telegram</a></li>
+              <li><a href="thankyou.html?to=https://t.me/yuriybyg">Telegram</a></li>
               <li><a href="https://wa.me/79996708772">WhatsApp</a></li>
               <li><a href="tel:+79996708772">+7 999 670 87 72</a></li>
               <li><a href="mailto:lab.301@ya.ru">lab.301@ya.ru</a></li>

@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ru" data-palette="signal" data-density="comfortable">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Политика конфиденциальности — LAB301</title>
+<meta name="description" content="Политика конфиденциальности LAB301 Digital Studio: порядок сбора, хранения и защиты персональных данных." />
+<link rel="canonical" href="https://lab301.ru/privacy.html" />
+<meta name="theme-color" content="#0A0B0D" />
+<meta name="robots" content="noindex, follow" />
+
+<!-- Open Graph -->
+<meta property="og:title" content="Политика конфиденциальности — LAB301" />
+<meta property="og:description" content="Политика конфиденциальности LAB301 Digital Studio." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://lab301.ru/privacy.html" />
+<meta property="og:image" content="og-share.png" />
+<meta property="og:locale" content="ru_RU" />
+<meta property="og:site_name" content="LAB301" />
+
+<!-- Favicons -->
+<link rel="icon" type="image/x-icon" href="favicon.ico" />
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="LAB301" />
+<meta name="application-name" content="LAB301" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="image" href="lab301-logo-mobile.avif" fetchpriority="high">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap"></noscript>
+<link rel="stylesheet" href="theme.css?v=3">
+<style>
+  /* ── h1 уменьшен под длинное слово ── */
+  .page-head h1 { font-size: clamp(32px, 4.8vw, 72px); }
+
+  /* ── Privacy layout ── */
+  .prv-body { max-width: 720px; margin: 0 auto; }
+
+  .prv-section {
+    padding: 48px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .prv-section:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .prv-num {
+    font-family: var(--font-m);
+    font-size: 10px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--acc);
+    margin-bottom: 8px;
+  }
+
+  .prv-title {
+    font-family: var(--font-d);
+    font-size: clamp(20px, 3vw, 26px);
+    font-weight: 700;
+    letter-spacing: -.02em;
+    color: var(--ink);
+    margin-bottom: 24px;
+    line-height: 1.1;
+  }
+
+  .prv-text {
+    font-family: var(--font-b);
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--ink-2);
+  }
+  .prv-text p { margin-bottom: 14px; }
+  .prv-text p:last-child { margin-bottom: 0; }
+
+  .prv-list {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .prv-list li {
+    display: flex;
+    gap: 10px;
+    color: var(--ink-2);
+    font-family: var(--font-b);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .prv-list li::before {
+    content: "—";
+    color: var(--acc);
+    flex-shrink: 0;
+    font-family: var(--font-m);
+  }
+
+  .prv-sub {
+    font-family: var(--font-m);
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin: 20px 0 8px;
+  }
+
+  .prv-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 16px;
+  }
+  .prv-contact a {
+    font-family: var(--font-m);
+    font-size: 13px;
+    color: var(--ink);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .prv-contact a:hover { color: var(--acc); }
+  .prv-contact a .prv-icon { color: var(--ink-3); }
+
+  .prv-updated {
+    font-family: var(--font-m);
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 768px) {
+    .prv-section { padding: 36px 0; }
+    .prv-updated { flex-direction: column; align-items: flex-start; gap: 8px; }
+  }
+</style>
+</head>
+<body data-page="privacy">
+
+<!-- ── Page hero ── -->
+<section class="page-head">
+  <div class="container">
+    <div class="coord reveal">
+      <div><b>FILE / PD</b> &nbsp; PRIVACY.INDEX &nbsp; / &nbsp; 12 РАЗДЕЛОВ</div>
+      <div class="sig"><span style="color:#16a34a;">●</span> АКТУАЛЬНО</div>
+    </div>
+    <div class="crumbs reveal"><a href="index.html">LAB301</a><span class="sep">/</span><span class="here">Конфиденциальность</span></div>
+    <div class="grid2">
+      <div class="reveal">
+        <div class="label" style="margin-bottom:32px;"><span class="dot">▌</span> ДОКУМЕНТ / PD — ДАННЫЕ</div>
+        <h1><span class="swatch"></span>Политика<br><em>конфиденциальности.</em></h1>
+      </div>
+      <aside class="meta reveal">
+        <p class="lede">Как мы собираем, храним и&nbsp;защищаем ваши персональные данные. Документ разработан в&nbsp;соответствии с&nbsp;<b>ФЗ‑152</b> и&nbsp;действующим законодательством&nbsp;РФ.</p>
+        <div class="cta-row">
+          <a class="btn-secondary" href="contacts.html">Задать вопрос</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ── Content ── -->
+<section>
+  <div class="container">
+    <div class="prv-body reveal">
+
+      <!-- 1 -->
+      <div class="prv-section">
+        <div class="prv-num">Раздел · 01</div>
+        <h2 class="prv-title">Общие положения</h2>
+        <div class="prv-text">
+          <p>Настоящая Политика конфиденциальности регулирует порядок обработки и&nbsp;защиты персональных данных пользователей сайта <b>https://lab301.ru</b>, которые предоставляются при использовании сервисов Сайта.</p>
+          <p>Оператором персональных данных является <b>LAB301 Digital Studio</b>.</p>
+          <p>Используя Сайт, вы соглашаетесь с&nbsp;условиями настоящей Политики. Если вы не&nbsp;согласны&nbsp;— прекратите использование Сайта.</p>
+          <p class="prv-sub">Нормативная база</p>
+          <ul class="prv-list">
+            <li>Федеральный закон №152‑ФЗ «О персональных данных»</li>
+            <li>Федеральный закон №149‑ФЗ «Об информации, информационных технологиях и&nbsp;о&nbsp;защите информации»</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="prv-section">
+        <div class="prv-num">Раздел · 02</div>
+        <h2 class="prv-title">Какие данные мы собираем</h2>
+        <div class="prv-text">
+          <p class="prv-sub">2.1 · Данные которые вы предоставляете добровольно</p>
+          <ul class="prv-list">
+            <li>Имя и фамилия</li>
+            <li>Адрес электронной почты</li>
+            <li>Номер телефона</li>
+            <li>Название компании</li>
+            <li>Описание проекта или задачи</li>
+            <li>Иные данные, указанные в форме обратной связи</li>
+          </ul>
+          <p class="prv-sub">2.2 · Данные собираемые автоматически</p>
+          <ul class="prv-list">
+            <li>IP‑адрес</li>
+            <li>Тип и версия браузера</li>
+            <li>Операционная система</li>
+            <li>Страницы, которые вы посещаете на Сайте</li>
+            <li>Время и дата посещения</li>
+            <li>Реферальные ссылки (откуда пришли на Сайт)</li>
+          </ul>
+          <p class="prv-sub">2.3 · Данные от сторонних сервисов</p>
+          <ul class="prv-list">
+            <li>Яндекс Метрика (аналитика посещаемости)</li>
+            <li>Telegram (при переходе в мессенджер)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="prv-section">
+        <div class="prv-num">Раздел · 03</div>
+        <h2 class="prv-title">Цели обработки данных</h2>
+        <div class="prv-text">
+          <p class="prv-sub">Мы используем ваши данные для</p>
+          <ul class="prv-list">
+            <li>Обработки заявок и запросов с Сайта</li>
+            <li>Связи с вами по вопросам сотрудничества</li>
+            <li>Подготовки коммерческих предложений</li>
+            <li>Заключения и исполнения договоров</li>
+            <li>Улучшения качества работы Сайта</li>
+            <li>Анализа посещаемости и поведения пользователей</li>
+            <li>Технической поддержки пользователей</li>
+          </ul>
+          <p class="prv-sub">Мы не используем данные для</p>
+          <ul class="prv-list">
+            <li>Передачи третьим лицам в коммерческих целях</li>
+            <li>Спам‑рассылок без вашего согласия</li>
+            <li>Продажи рекламодателям</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="prv-section">
+        <div class="prv-num">Раздел · 04</div>
+        <h2 class="prv-title">Передача данных третьим лицам</h2>
+        <div class="prv-text">
+          <p>Мы не&nbsp;продаём и&nbsp;не&nbsp;передаём ваши персональные данные третьим лицам, за исключением случаев:</p>
+          <ul class="prv-list">
+            <li>Вы дали явное согласие на передачу</li>
+            <li>Передача необходима для исполнения договора с вами</li>
+            <li>Передача предусмотрена действующим законодательством РФ</li>
+            <li>Защита прав и интересов Оператора в судебном порядке</li>
+          </ul>
+          <p class="prv-sub">Сторонние сервисы на Сайте</p>
+          <ul class="prv-list">
+            <li>Яндекс Метрика — аналитика (<a href="https://yandex.ru/legal/confidential" target="_blank" rel="noopener" style="color:var(--acc);">yandex.ru/legal/confidential</a>)</li>
+            <li>Google Fonts / Яндекс Шрифты — загрузка шрифтов</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div class="prv-section">
+        <div class="prv-num">Раздел · 05</div>
+        <h2 class="prv-title">Cookies (файлы куки)</h2>
+        <div class="prv-text">
+          <p>Сайт использует файлы cookie для:</p>
+          <ul class="prv-list">
+            <li>Корректной работы Сайта</li>
+            <li>Сбора аналитики (Яндекс Метрика)</li>
+            <li>Запоминания ваших предпочтений (тема, язык)</li>
+          </ul>
+          <p>Вы можете отключить cookies в настройках браузера. Обратите внимание: отключение cookies может повлиять на работу Сайта.</p>
+        </div>
+      </div>
+
+      <!-- 6 -->
+      <div class="prv-section">
+        <div class="prv-num">Раздел · 06</div>
+        <h2 class="prv-title">Защита данных</h2>
+        <div class="prv-text">
+          <p>Мы принимаем разумные технические и&nbsp;организационные меры для защиты ваших данных от несанкционированного доступа, изменения, раскрытия или уничтожения:</p>
+          <ul class="prv-list">
+            <li>Сайт работает по защищённому протоколу HTTPS</li>
+            <li>Доступ к данным имеет ограниченный круг лиц</li>
+            <li>Данные хранятся на защищённых серверах</li>
+            <li>Регулярное обновление систем безопасности</li>
+          </ul>
+          <p>Мы не&nbsp;можем гарантировать абсолютную защиту данных при передаче через интернет, однако прилагаем все разумные усилия для их защиты.</p>
+        </div>
+      </div>
+
+      <!-- 7 -->
+      <div class="prv-section">
+        <div class="prv-num">Раздел · 07</div>
+        <h2 class="prv-title">Срок хранения данных</h2>
+        <div class="prv-text">
+          <ul class="prv-list">
+            <li>Данные из форм обратной связи — до&nbsp;3 лет с&nbsp;момента получения или до&nbsp;достижения цели обработки</li>
+            <li>Данные договоров — в соответствии с законодательством РФ (5 лет)</li>
+            <li>Аналитические данные — в соответствии с политикой Яндекс Метрики</li>
+          </ul>
+          <p>По истечении срока данные удаляются или обезличиваются.</p>
+        </div>
+      </div>
+
+      <!-- 8 -->
+      <div class="prv-section">
+        <div class="prv-num">Раздел · 08</div>
+        <h2 class="prv-title">Ваши права</h2>
+        <div class="prv-text">
+          <p>В соответствии с ФЗ‑152 «О персональных данных» вы имеете право:</p>
+          <ul class="prv-list">
+            <li>Получить информацию об обработке ваших данных</li>
+            <li>Потребовать уточнения, блокировки или уничтожения данных</li>
+            <li>Отозвать согласие на обработку данных</li>
+            <li>Обратиться с жалобой в Роскомнадзор</li>
+          </ul>
+          <p>Для реализации ваших прав обратитесь к нам:</p>
+          <div class="prv-contact">
+            <a href="mailto:lab.301@ya.ru"><span class="prv-icon">✉</span> lab.301@ya.ru</a>
+            <a href="thankyou.html?to=https://t.me/yuriybyg"><span class="prv-icon">✈</span> @yuriybyg · Telegram</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9 -->
+      <div class="prv-section">
+        <div class="prv-num">Раздел · 09</div>
+        <h2 class="prv-title">Данные несовершеннолетних</h2>
+        <div class="prv-text">
+          <p>Сайт не&nbsp;предназначен для лиц младше 18 лет. Мы сознательно не&nbsp;собираем данные несовершеннолетних.</p>
+          <p>Если вам стало известно, что несовершеннолетний предоставил нам данные&nbsp;— свяжитесь с&nbsp;нами для их удаления.</p>
+        </div>
+      </div>
+
+      <!-- 10 -->
+      <div class="prv-section">
+        <div class="prv-num">Раздел · 10</div>
+        <h2 class="prv-title">Ссылки на внешние сайты</h2>
+        <div class="prv-text">
+          <p>Сайт может содержать ссылки на&nbsp;внешние ресурсы (Telegram, GitHub, партнёры). Мы не&nbsp;несём ответственности за&nbsp;политику конфиденциальности этих сайтов.</p>
+          <p>Рекомендуем ознакомиться с&nbsp;политиками конфиденциальности внешних сайтов самостоятельно.</p>
+        </div>
+      </div>
+
+      <!-- 11 -->
+      <div class="prv-section">
+        <div class="prv-num">Раздел · 11</div>
+        <h2 class="prv-title">Изменения политики</h2>
+        <div class="prv-text">
+          <p>Мы оставляем за&nbsp;собой право изменять настоящую Политику. При существенных изменениях мы уведомим вас:</p>
+          <ul class="prv-list">
+            <li>Размещением новой версии на Сайте</li>
+            <li>Указанием даты последнего обновления вверху страницы</li>
+          </ul>
+          <p>Продолжение использования Сайта после изменений означает ваше согласие с&nbsp;новой редакцией Политики.</p>
+        </div>
+      </div>
+
+      <!-- 12 -->
+      <div class="prv-section">
+        <div class="prv-num">Раздел · 12</div>
+        <h2 class="prv-title">Контакты</h2>
+        <div class="prv-text">
+          <p>По всем вопросам, связанным с&nbsp;обработкой персональных данных:</p>
+          <p><b>LAB301 Digital Studio</b><br>Отвечаем в&nbsp;течение 3&nbsp;рабочих дней.</p>
+          <div class="prv-contact">
+            <a href="mailto:lab.301@ya.ru"><span class="prv-icon">✉</span> lab.301@ya.ru</a>
+            <a href="thankyou.html?to=https://t.me/yuriybyg"><span class="prv-icon">✈</span> @yuriybyg · Telegram</a>
+            <a href="https://lab301.ru"><span class="prv-icon">◉</span> https://lab301.ru</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer note -->
+      <div class="prv-updated">
+        <span>Дата последнего обновления: 17 мая 2026 года</span>
+        <span>© 2026 LAB301 Digital Studio. Все права защищены.</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script src="theme.js?v=3"></script>
+</body>
+</html>

@@ -68,7 +68,7 @@
 <!-- LCP image: only on desktop (>1180px) — on mobile .mik-frame is display:none, mobile LCP is H1 text -->
 <link rel="preload" as="image" href="ai_assistant_main.avif" fetchpriority="high" media="(min-width: 1181px)">
 <!-- Nav logo (~6KB) — small, early discovery for all devices -->
-<link rel="preload" as="image" href="lab301-logo-mobile.avif" fetchpriority="high">
+<link rel="preload" as="image" href="guga.avif" fetchpriority="high">
 <!-- Fonts CSS: non-blocking via preload+onload swap, paired with display=swap -->
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap"></noscript>
@@ -76,18 +76,23 @@
 <link rel="stylesheet" href="theme.css?v=3">
 <style>
   /* page-only overrides */
-  #hero { padding-top:168px; padding-bottom: var(--row); min-height:100vh; display:flex; align-items:flex-start; }
+
+  #hero { padding-top:140px; padding-bottom: 40px; display:flex; align-items:flex-start; }
   /* content-visibility для секций ниже fold */
   #services, #ops, #archive, #cta-band { content-visibility: auto; contain-intrinsic-size: 0 600px; }
   .hero-coord {
-    display:flex; justify-content:space-between; align-items:baseline;
-    padding-bottom:24px; border-bottom:1px solid var(--rule); margin-bottom: 56px;
-    font-family:var(--font-m); font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-3);
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding-top: 18px; padding-bottom: 18px; margin-bottom: 48px;
+    border-bottom: 1px solid var(--rule);
+    font-family: var(--font-m); font-size: 11px;
+    letter-spacing: .16em; text-transform: uppercase;
+    color: var(--ink-3);
   }
-  .hero-coord b { color:var(--ink); font-weight:500; }
-  .hero-grid { display:grid; grid-template-columns:1.55fr 1fr; gap:48px; align-items:center; }
+  /* ИНДЕКС / 01 — БРИФ — скрыт глобально */
+  #hero .hero-grid .label { display: none; }
+  .hero-grid { display:grid; grid-template-columns:1.55fr 1fr; gap:48px; align-items:start; }
   @media (max-width:980px){ .hero-grid { grid-template-columns:1fr; gap:48px; } }
-  .hero-title { font-size: clamp(54px, 8.4vw, 132px); font-weight:700; letter-spacing:-.045em; line-height:.92; }
+  .hero-title { font-size: clamp(50px, 7.8vw, 122px); font-weight:700; letter-spacing:-.055em; line-height:.84; margin:0; }
   .hero-title .line { display:block; }
   .hero-title .line:first-child { white-space:nowrap; }
   .hero-title .l2 { color:#8e939e; }
@@ -99,60 +104,304 @@
     transition: background .35s ease, box-shadow .4s ease;
   }
   @media (max-width: 720px) {
-    .hero-title .line:first-child { white-space:normal; }
-    .hero-title .swatch { width:.4em; height:.4em; }
-    #hero { padding-top: 72px; }
-    .hero-coord { margin-bottom: 16px; padding-bottom: 12px; }
+    /* Координатная строка — восстановить на мобиле */
+    .hero-coord {
+      display: flex; flex-direction: column; gap: 3px;
+      padding-top: 8px; padding-bottom: 8px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--rule);
+      font-family: var(--font-m); font-size: 9px;
+      letter-spacing: .15em; text-transform: uppercase;
+      color: var(--ink-3);
+    }
+    /* Hero: заголовок крупнее, левое выравнивание */
+    .hero-title {
+      font-size: clamp(50px, 13.5vw, 72px);
+      letter-spacing: -.04em; line-height: .88;
+      text-align: left;
+    }
+    .hero-grid { gap: 20px; text-align: left; }
+    .hero-title .line:first-child { white-space: normal; }
+    .hero-title .swatch { width: .38em; height: .38em; }
+    /* Hero: занять весь первый экран */
+    #hero { padding-top: 148px; padding-bottom: 24px; min-height: 100dvh; }
+    #hero > .container {
+      display: flex; flex-direction: column;
+      min-height: calc(100dvh - 172px); /* 148 top + 24 bottom */
+    }
+    /* Статы — к низу экрана */
+    .hero-stats { margin-top: auto !important; padding-top: 20px; }
+    .hero-lede { font-size: 15px; text-align: left; max-width: 100%; }
+    .hero-meta {
+      border-left: none; padding-left: calc(0.56 * clamp(50px, 13.5vw, 72px)) !important;
+    }
+    .hero-cta-row { width: 100%; }
   }
+  /* ── Mobile-only hero fixes ── */
+  @media (max-width: 768px) {
+    /* Кнопки: одна на мобиле, на всю ширину */
+    .hero-cta-row .btn-secondary { display: none; }
+    .hero-cta-row { width: 100%; justify-content: flex-start; margin-top: 18px; margin-bottom: 18px; }
+    .hero-cta-row .btn-primary { width: auto; }
+  }
+
   .hero-title em { font-style:normal; color: var(--acc); }
-  .hero-meta { border-left:1px solid var(--rule); padding-left:28px; display:flex; flex-direction:column; gap:28px; padding-bottom:12px; }
-  .hero-lede { font-size:17px; line-height:1.55; color:var(--ink-2); max-width:42ch; }
-  .hero-lede b { color:var(--ink); font-weight:600; }
+  .hero-meta { border-left:1px solid var(--rule); padding-left:28px; display:flex; flex-direction:column; justify-content:space-between; padding-bottom:0; }
+  .hero-lede { font-size:24px; line-height:1.55; color:var(--ink-2); max-width:42ch; }
+  .hero-lede b { color:#fff; font-weight:600; }
   .hero-cta-row { display:flex; gap:12px; flex-wrap:wrap; }
   .hero-stats { margin-top: 56px; }
 
-  /* Hero grid base + mobile collapse — must apply on mobile so layout works */
-  .hero-grid { grid-template-columns: 1.4fr 0.85fr 0.6fr; }
-  @media (max-width:1180px) { .hero-grid { grid-template-columns: 1.55fr 1fr; } .mik-frame { display:none; } }
-  @media (max-width:980px)  { .hero-grid { grid-template-columns: 1fr; gap:48px; } }
+  /* Пояснительная строка под метрикой */
+  .stat-cell .stat-sub {
+    font-family: var(--font-b); font-size: 10px; line-height: 1.4;
+    color: var(--ink-2); margin-top: 3px; letter-spacing: .01em;
+  }
+  /* Hero stats: компактнее, цифры меньше */
+  .hero-stats .stat-cell { padding: 16px 20px; }
+  .hero-stats .stat-cell .v { font-size: clamp(22px, 3vw, 36px); }
+  /* Hero CTA primary: заметнее */
+  .hero-cta-row .btn-primary {
+    padding: 14px 28px; font-size: 14px;
+    background: #E8202F; box-shadow: 0 0 32px rgba(232,32,47,0.55);
+  }
+  /* Ghost-кнопка — тот же размер что primary */
+  .hero-cta-row .btn-secondary {
+    border-color: rgba(255,255,255,0.3);
+    font-size: 14px; padding: 14px 28px;
+  }
+  /* Равная ширина кнопок на desktop */
+  @media (min-width: 769px) {
+    .hero-cta-row { flex-wrap: nowrap; }
+    .hero-cta-row .btn-primary,
+    .hero-cta-row .btn-secondary { flex: 1 1 0; justify-content: center; }
+  }
 
-  /* Михалыч AI mascot styles — desktop only (>1180px). Skip parsing on mobile entirely. */
-  @media (min-width: 1181px) {
-    .mik-frame {
-      position:relative;
-      border: 1px solid var(--rule);
-      border-radius: 6px;
-      background:
-        radial-gradient(circle 240px at 50% 30%, var(--acc-soft), transparent 70%),
-        linear-gradient(180deg, var(--panel) 0%, var(--panel-2) 100%);
-      padding: 24px 18px 18px;
-      min-height: 100%;
-      display:flex; flex-direction:column; gap:14px;
-      overflow:hidden;
+  /* Hero grid — 2 колонки: заголовок | текст+кнопки */
+  .hero-grid { grid-template-columns: 1.5fr 1fr; align-items: stretch; }
+  @media (max-width:980px) { .hero-grid { grid-template-columns: 1fr; gap:40px; } }
+
+  /* Михалыч под заголовком — горизонтальная компоновка */
+  .hero-mik-inline {
+    display: block;
+    height: 200px;
+    width: auto;
+    margin-top: 36px;
+    filter: drop-shadow(0 0 32px var(--acc-glow));
+  }
+  @media (max-width: 980px) { .hero-mik-inline { height: 140px; margin-top: 24px; } }
+  @media (max-width: 540px) { .hero-mik-inline { height: 100px; margin-top: 16px; } }
+
+  /* ── Hero Flow — анимированный блок автоматизации ── */
+  .hero-flow {
+    margin-top: 28px;
+    padding: 14px 20px 16px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 6px;
+    background: rgba(255,255,255,0.03);
+  }
+  .hf-label {
+    font-family: var(--font-m); font-size: 9px;
+    letter-spacing: .2em; text-transform: uppercase;
+    color: var(--ink-3); margin-bottom: 14px;
+  }
+  .hf-dot { color: #16a34a; margin-right: 6px; }
+  .hf-steps { display: flex; align-items: stretch; }
+  .hf-step {
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center; padding: 10px 14px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 6px; flex-shrink: 0; width: 160px;
+    transition: border-color .3s, box-shadow .3s;
+  }
+  .hf-step.active {
+    border-color: #16a34a;
+    box-shadow: 0 0 18px rgba(22,163,74,0.28);
+  }
+  .hf-step.lit {
+    border-color: rgba(255,255,255,0.35);
+    box-shadow: 0 0 14px rgba(255,255,255,0.08);
+  }
+  /* Per-colour glow: красные карточки */
+  .hf-step.lit[data-step="0"],
+  .hf-step.lit[data-step="2"],
+  .hf-step.lit[data-step="3"] {
+    border-color: rgba(232,32,47,0.38);
+    box-shadow: 0 0 18px rgba(232,32,47,0.14);
+    background: rgba(232,32,47,0.04);
+  }
+  /* Per-colour glow: AI ассистент — белый */
+  .hf-step.lit[data-step="1"] {
+    border-color: rgba(255,255,255,0.28);
+    box-shadow: 0 0 14px rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.025);
+  }
+  .hf-icon {
+    width: 100%; height: 68px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--ink-3); transition: color .3s; margin-bottom: 8px;
+  }
+  .hf-step.active .hf-icon { color: #16a34a; }
+  .hf-step[data-step="0"] .hf-icon { color: var(--acc); }
+  .hf-step[data-step="1"] .hf-icon { color: #fff; }
+  .hf-step[data-step="2"] .hf-icon { color: var(--acc); }
+  .hf-step[data-step="3"] .hf-icon { color: var(--acc); }
+  .hf-step[data-step="4"] .hf-icon { color: #16a34a; }
+  .hf-name {
+    font-family: var(--font-m); font-size: 12px;
+    letter-spacing: .08em; text-transform: uppercase;
+    color: var(--ink); transition: color .3s; white-space: nowrap;
+  }
+  .hf-step.active .hf-name { color: #fff; }
+  .hf-sub {
+    font-family: var(--font-b); font-size: 11px;
+    color: var(--ink-2); margin-top: 4px; white-space: normal; line-height: 1.3;
+  }
+  /* Шаг с Михалычем — одинаковый размер с остальными */
+  .hf-icon--mik { margin-bottom: 8px; }
+  .hf-mik-img {
+    height: 100%; width: auto; display: block; object-fit: contain;
+    filter: drop-shadow(0 0 10px rgba(22,163,74,0.15));
+    transition: filter .3s;
+  }
+  .hf-step.active .hf-mik-img {
+    filter: drop-shadow(0 0 20px rgba(22,163,74,0.55));
+  }
+  .hf-conn {
+    flex: 1; display: flex; align-items: center;
+    gap: 2px; min-width: 24px;
+  }
+  .hf-line {
+    flex: 1; height: 1px;
+    background: repeating-linear-gradient(
+      90deg, rgba(255,255,255,0.14) 0, rgba(255,255,255,0.14) 5px,
+      transparent 5px, transparent 12px
+    );
+    background-size: 17px 1px;
+    animation: hf-dash .7s linear infinite;
+    transition: background .3s;
+  }
+  .hf-conn.active .hf-line {
+    background: repeating-linear-gradient(
+      90deg, #16a34a 0, #16a34a 5px,
+      transparent 5px, transparent 12px
+    );
+    background-size: 17px 1px;
+  }
+  @keyframes hf-dash {
+    from { background-position: 0 0; }
+    to   { background-position: 17px 0; }
+  }
+  .hf-arr {
+    font-size: 14px; color: rgba(255,255,255,0.15);
+    flex-shrink: 0; transition: color .3s; line-height: 1;
+  }
+  .hf-conn.active .hf-arr { color: #16a34a; }
+  @media (max-width: 900px) { .hero-flow { display: none; } }
+
+  /* ── Hero Flow entrance animation ── */
+  .hero-flow .hf-step  { opacity:0; transform:translateY(20px); }
+  .hero-flow .hf-conn  { opacity:0; transform:scaleX(0); transform-origin:left center; }
+  .hero-flow.in-view .hf-step { animation:hf-enter-step .45s ease forwards; }
+  .hero-flow.in-view .hf-conn { animation:hf-enter-conn .35s ease forwards; transform-origin:left center; }
+  @keyframes hf-enter-step {
+    from { opacity:0; transform:translateY(20px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+  @keyframes hf-enter-conn {
+    from { opacity:0; transform:scaleX(0); }
+    to   { opacity:1; transform:scaleX(1); }
+  }
+  @keyframes hf-pulse-green {
+    0%,100% { box-shadow:0 0 18px rgba(22,163,74,.28); }
+    50%     { box-shadow:0 0 42px rgba(22,163,74,.7), 0 0 60px rgba(22,163,74,.2); }
+  }
+  @media (prefers-reduced-motion:reduce) {
+    .hero-flow .hf-step,.hero-flow .hf-conn { opacity:1 !important; transform:none !important; animation:none !important; }
+  }
+
+  /* ── Hero Flow Vertical (mobile only) ── */
+  .hero-flow-v { display: none; }
+  @media (max-width: 768px) {
+    /* Блок растягивается по вертикали между CTA и статами */
+    .hero-flow-v {
+      display: flex; flex-direction: column;
+      flex: 1;
+      margin: 12px 0;
+      padding: 12px 14px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 0;
     }
-    .mik-frame::before {
-      content:"AGENT · MIKHALYCH · v3.1";
-      position:absolute; top:10px; left:14px;
-      font-family: var(--font-m); font-size:9px; letter-spacing:.18em; color: var(--ink-3);
-      text-transform:uppercase;
+    .hfv-label {
+      font-family: var(--font-m); font-size: 9px;
+      letter-spacing: .2em; text-transform: uppercase;
+      color: var(--ink-3); margin-bottom: 10px; flex-shrink: 0;
     }
-    .mik-frame::after {
-      content:"●"; position:absolute; top:10px; right:14px;
-      color: var(--acc); font-size:8px;
-      animation: pulse 1.8s ease-in-out infinite;
+    .hfv-dot { color: #16a34a; margin-right: 4px; }
+    /* Шаги + коннекторы заполняют всё доступное пространство */
+    .hfv-steps { display: flex; flex-direction: column; flex: 1; }
+    .hfv-step { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+    /* Коннектор: эластичный — растягивается, линия заполняет его */
+    .hfv-conn { display: flex; flex: 1; min-height: 14px; }
+    .hfv-icon-w {
+      width: 28px; flex-shrink: 0;
+      display: flex; justify-content: center; align-items: center;
     }
-    .mik-img {
-      width:100%; max-width: 240px; height: auto; margin: 18px auto 0;
-      display:block;
-      filter: drop-shadow(0 0 40px var(--acc-glow));
+    /* Внутри коннектора — растянуть icon-w и линию */
+    .hfv-conn .hfv-icon-w { align-items: stretch; }
+    .hfv-icon {
+      width: 24px; height: 24px;
+      display: flex; align-items: center; justify-content: center;
     }
-    .mik-status {
-      border-top: 1px solid var(--rule);
-      padding-top: 14px; margin-top: auto;
-      font-family: var(--font-m); font-size:10px; letter-spacing:.14em;
-      display:flex; justify-content:space-between; color: var(--ink-3); text-transform:uppercase;
+    /* Иконки — красные по умолчанию */
+    .hfv-step .hfv-icon { color: #E8192C; }
+    /* Михалыч — img, color не влияет (остаётся как есть) */
+    /* ИСПОЛНЕНИЕ — зелёная */
+    .hfv-step[data-vstep="4"] .hfv-icon { color: #16a34a; }
+    /* Михалыч — всегда видимый */
+    .hfv-mik-img-v {
+      height: 22px; width: auto; display: block; object-fit: contain;
     }
-    .mik-status .v { color: var(--acc); }
+    .hfv-text { flex: 1; padding: 2px 0 4px; }
+    /* Название — белое всегда */
+    .hfv-name {
+      font-family: var(--font-m); font-size: 11px; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: #fff;
+    }
+    /* Подпись — серая */
+    .hfv-sub {
+      font-family: var(--font-b); font-size: 10px; line-height: 1.3;
+      color: var(--ink-3); margin-top: 2px;
+    }
+    /* Линия — зелёная, анимированная */
+    .hfv-vline {
+      width: 1px; height: 100%;
+      background: repeating-linear-gradient(
+        to bottom,
+        #16a34a 0, #16a34a 4px,
+        transparent 4px, transparent 8px
+      );
+      background-size: 1px 8px;
+      animation: hfv-dash .6s linear infinite;
+    }
+    @keyframes hfv-dash {
+      from { background-position: 0 0; }
+      to   { background-position: 0 8px; }
+    }
+    /* Mobile: per-colour icon glow */
+    .hfv-step[data-vstep="0"] .hfv-icon,
+    .hfv-step[data-vstep="2"] .hfv-icon,
+    .hfv-step[data-vstep="3"] .hfv-icon {
+      filter: drop-shadow(0 0 5px rgba(232,32,47,0.55));
+    }
+    .hfv-step[data-vstep="1"] .hfv-icon {
+      filter: drop-shadow(0 0 5px rgba(255,255,255,0.35));
+    }
+    .hfv-step[data-vstep="4"] .hfv-icon {
+      filter: drop-shadow(0 0 6px rgba(22,163,74,0.65));
+    }
   }
 </style>
 </head>
@@ -167,7 +416,6 @@
 
     <div class="hero-grid">
       <div>
-        <div class="label" style="margin-bottom:32px;" data-en='<span class="dot">▌</span> INDEX / 01 — BRIEF'><span class="dot">▌</span> ИНДЕКС / 01 — БРИФ</div>
         <h1 class="hero-title" data-en='<span class="line"><span class="swatch"></span>Tech&nbsp;for</span><span class="line l2">business</span><span class="line"><em>growth</em>.</span>'>
           <span class="line"><span class="swatch"></span>Технологии</span>
           <span class="line l2">роста&nbsp;для</span>
@@ -175,49 +423,178 @@
         </h1>
       </div>
       <aside class="hero-meta reveal">
-        <p class="hero-lede" data-en='We build <b>websites, AI&nbsp;agents and automations</b> that move metrics, not just look pretty in&nbsp;demos. Launch in&nbsp;14&nbsp;days. Support&nbsp;— 24/7.'>Строим <b>сайты, AI‑агентов и&nbsp;автоматизации</b>, которые двигают метрики, а&nbsp;не просто красиво выглядят на&nbsp;демо. Запуск&nbsp;— 14&nbsp;дней. Поддержка&nbsp;— 24/7.</p>
+        <p class="hero-lede" data-en='We build <b>digital systems</b> for business. Websites, AI&nbsp;agents and automation in one infrastructure. Launch in&nbsp;14&nbsp;days. Support&nbsp;— 24/7.'><b>Создаем цифровые системы для бизнеса.</b><br><span style="color:#C9CED7">Сайты, AI&#8209;агенты и&nbsp;автоматизация в&nbsp;одной инфраструктуре.</span><br><span style="color:var(--acc)">Запуск&nbsp;— 14&nbsp;дней. Поддержка&nbsp;— 24/7.</span></p>
         <div class="hero-cta-row">
-          <a class="btn-primary" href="https://t.me/Judgeopenclawbot" target="_blank" data-en='Launch project <span>→</span>'>Запустить проект <span>></span></a>
-          <a class="btn-secondary" href="services.html" data-en='View stack'>Посмотреть стек</a>
-        </div>
-        <div class="sys-card frame">
-          <span class="tc bl"></span><span class="tc br"></span>
-          <div class="row"><span class="k">Канал</span><span class="v">TG / Михалыч</span></div>
-          <div class="row"><span class="k">Время отклика</span><span class="v ok">≤ 05:00</span></div>
-          <div class="row"><span class="k">Загрузка</span><span class="v">3 / 5 слотов</span></div>
+          <a class="btn-primary" href="thankyou.html?to=https://t.me/Judgeopenclawbot" data-en='Launch project <span>→</span>'>Запустить проект <span>→</span></a>
+          <a class="btn-secondary" href="cases.html" data-en='View cases'>Смотреть кейсы</a>
         </div>
       </aside>
+    </div>
 
-      <aside class="mik-frame reveal" aria-label="Михалыч — AI ассистент LAB301">
-        <picture>
-          <!-- Mobile: empty 1x1 to prevent loading. .mik-frame is display:none below 1180px -->
-          <source media="(max-width: 1180px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
-          <img src="ai_assistant_main.avif" alt="Михалыч — AI ассистент LAB301" class="mik-img" width="280" height="360" loading="eager" fetchpriority="high" decoding="async" />
-        </picture>
-        <div class="mik-status">
-          <span>Status</span><span class="v">● ONLINE</span>
+    <!-- ── Automation Flow — полная ширина ── -->
+    <div class="hero-flow reveal">
+      <div class="hf-label"><span class="hf-dot">●</span>АВТОМАТИЗАЦИЯ В ДЕЙСТВИИ</div>
+      <div class="hf-steps">
+
+        <div class="hf-step" data-step="0">
+          <div class="hf-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg></div>
+          <div class="hf-name">ЗАЯВКА</div>
+          <div class="hf-sub">Клиент пишет боту</div>
         </div>
-        <div class="mik-status">
-          <span>Latency</span><span class="v">1.8s</span>
+
+        <div class="hf-conn"><div class="hf-line"></div><span class="hf-arr">›</span></div>
+
+        <div class="hf-step hf-step--mik" data-step="1">
+          <div class="hf-icon hf-icon--mik">
+            <img src="ai_assistant_main.avif" alt="Михалыч" class="hf-mik-img" width="280" height="360" loading="eager" decoding="async" />
+          </div>
+          <div class="hf-name">AI ОБРАБОТКА</div>
+          <div class="hf-sub">AI продаёт вместо менеджера</div>
         </div>
-        <div class="mik-status">
-          <span>Closed lead %</span><span class="v">42%</span>
+
+        <div class="hf-conn"><div class="hf-line"></div><span class="hf-arr">›</span></div>
+
+        <div class="hf-step" data-step="2">
+          <div class="hf-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div>
+          <div class="hf-name">CRM</div>
+          <div class="hf-sub">Сделка создана автоматически</div>
         </div>
-      </aside>
+
+        <div class="hf-conn"><div class="hf-line"></div><span class="hf-arr">›</span></div>
+
+        <div class="hf-step" data-step="3">
+          <div class="hf-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div>
+          <div class="hf-name">СЧЁТ</div>
+          <div class="hf-sub">Автовыставление счёта</div>
+        </div>
+
+        <div class="hf-conn"><div class="hf-line"></div><span class="hf-arr">›</span></div>
+
+        <div class="hf-step" data-step="4">
+          <div class="hf-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+          <div class="hf-name">ИСПОЛНЕНИЕ</div>
+          <div class="hf-sub">Заказ передан в работу</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── Automation Flow Vertical (mobile only) ── -->
+    <div class="hero-flow-v reveal">
+      <div class="hfv-label"><span class="hfv-dot">●</span>АВТОМАТИЗАЦИЯ В ДЕЙСТВИИ</div>
+      <div class="hfv-steps">
+
+        <div class="hfv-step" data-vstep="0">
+          <div class="hfv-icon-w"><div class="hfv-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg></div></div>
+          <div class="hfv-text"><div class="hfv-name">ЗАЯВКА</div><div class="hfv-sub">Клиент пишет боту</div></div>
+        </div>
+
+        <div class="hfv-conn" data-vconn="0"><div class="hfv-icon-w"><div class="hfv-vline"></div></div></div>
+
+        <div class="hfv-step" data-vstep="1">
+          <div class="hfv-icon-w"><div class="hfv-icon"><img src="ai_assistant_main.avif" alt="Михалыч" class="hfv-mik-img-v" width="24" height="32" loading="lazy" decoding="async"></div></div>
+          <div class="hfv-text"><div class="hfv-name">AI ОБРАБОТКА</div><div class="hfv-sub">AI продаёт вместо менеджера</div></div>
+        </div>
+
+        <div class="hfv-conn" data-vconn="1"><div class="hfv-icon-w"><div class="hfv-vline"></div></div></div>
+
+        <div class="hfv-step" data-vstep="2">
+          <div class="hfv-icon-w"><div class="hfv-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div></div>
+          <div class="hfv-text"><div class="hfv-name">CRM</div><div class="hfv-sub">Сделка создана автоматически</div></div>
+        </div>
+
+        <div class="hfv-conn" data-vconn="2"><div class="hfv-icon-w"><div class="hfv-vline"></div></div></div>
+
+        <div class="hfv-step" data-vstep="3">
+          <div class="hfv-icon-w"><div class="hfv-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg></div></div>
+          <div class="hfv-text"><div class="hfv-name">СЧЁТ</div><div class="hfv-sub">Автовыставление счёта</div></div>
+        </div>
+
+        <div class="hfv-conn" data-vconn="3"><div class="hfv-icon-w"><div class="hfv-vline"></div></div></div>
+
+        <div class="hfv-step" data-vstep="4">
+          <div class="hfv-icon-w"><div class="hfv-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div></div>
+          <div class="hfv-text"><div class="hfv-name">ИСПОЛНЕНИЕ</div><div class="hfv-sub">Заказ передан в работу</div></div>
+        </div>
+
+      </div>
     </div>
 
     <div class="stat-row hero-stats reveal">
-      <div class="stat-cell"><div class="v">95<sup>+</sup></div><div class="k">PageSpeed Desktop</div></div>
-      <div class="stat-cell"><div class="v">90<sup>+</sup></div><div class="k">PageSpeed Mobile</div></div>
-      <div class="stat-cell"><div class="v">1.5<sup>с</sup></div><div class="k">скорость загрузки</div></div>
-      <div class="stat-cell"><div class="v">14<sup>д</sup></div><div class="k">средний запуск</div></div>
-      <div class="stat-cell"><div class="v">120<sup>+</sup></div><div class="k">сайтов в&nbsp;арх.</div></div>
-      <div class="stat-cell"><div class="v">100<sup>%</sup></div><div class="k">SEO оптимизация</div></div>
-      <div class="stat-cell"><div class="v">×3</div><div class="k">рост трафика</div></div>
-      <div class="stat-cell"><div class="v">48<sup>ч</sup></div><div class="k">первый макет</div></div>
+      <div class="stat-cell">
+        <div class="v">95<sup>+</sup></div>
+        <div class="k">PageSpeed</div>
+        <div class="stat-sub">Desktop &amp; Mobile</div>
+      </div>
+      <div class="stat-cell">
+        <div class="v">14<sup>дней</sup></div>
+        <div class="k">средний запуск</div>
+        <div class="stat-sub">от брифа до релиза</div>
+      </div>
+      <div class="stat-cell">
+        <div class="v">×3<sup>клиентов</sup></div>
+        <div class="k">рост трафика</div>
+        <div class="stat-sub">в среднем за 3 мес.</div>
+      </div>
+      <div class="stat-cell">
+        <div class="v">100<sup>%</sup></div>
+        <div class="k">SEO оптимизация</div>
+        <div class="stat-sub">в каждом проекте</div>
+      </div>
     </div>
   </div>
 </section>
+<script>
+(function(){
+  /* ── Desktop horizontal flow (IntersectionObserver entrance) ── */
+  var steps = document.querySelectorAll('.hf-step');
+  var conns = document.querySelectorAll('.hf-conn');
+  var flow  = document.querySelector('.hero-flow');
+  if (steps.length && flow) {
+    steps.forEach(function(s,i){ s.style.animationDelay = (i*200)+'ms'; });
+    conns.forEach(function(c,i){ c.style.animationDelay = (i*200+100)+'ms'; });
+    var total = (steps.length-1)*200 + 600;
+    var io = new IntersectionObserver(function(entries){
+      if (!entries[0].isIntersecting) return;
+      io.disconnect();
+      flow.classList.add('in-view');
+      setTimeout(function(){
+        /* Freeze entrance → apply settled state */
+        steps.forEach(function(s,i){
+          s.style.animation='none'; s.style.opacity='1'; s.style.transform='none';
+          if (i < steps.length-1) s.classList.add('lit');
+        });
+        conns.forEach(function(c){
+          c.style.animation='none'; c.style.opacity='1'; c.style.transform='none';
+          c.classList.add('active');
+        });
+        var last = steps[steps.length-1];
+        last.classList.add('active');
+        /* Pulsing green glow on ИСПОЛНЕНИЕ */
+        requestAnimationFrame(function(){ requestAnimationFrame(function(){
+          last.style.animation = 'hf-pulse-green 1.8s ease-in-out infinite';
+        }); });
+      }, total);
+    }, {threshold:0.3});
+    io.observe(flow);
+  }
+  /* ── Mobile vertical flow ── */
+  var vsteps = document.querySelectorAll('.hfv-step');
+  var vconns = document.querySelectorAll('.hfv-conn');
+  if (vsteps.length) {
+    var vcur = 0;
+    function vtick() {
+      vsteps.forEach(function(s){ s.classList.remove('active'); });
+      vconns.forEach(function(c){ c.classList.remove('active'); });
+      vsteps[vcur].classList.add('active');
+      if (vcur < vconns.length) vconns[vcur].classList.add('active');
+      vcur = (vcur + 1) % vsteps.length;
+    }
+    vtick();
+    setInterval(vtick, 800);
+  }
+})();
+</script>
 
 <section id="stack">
   <div class="container">
@@ -382,11 +759,11 @@
     <div class="signal-wrap reveal">
       <div>
         <div class="label" style="margin-bottom:24px;"><span class="dot">▌</span> 05 // ОТКРЫТЬ&nbsp;КАНАЛ</div>
-        <h2 class="signal-title">Готовы запустить?<br><em>Михалыч на&nbsp;связи.</em></h2>
+        <h2 class="signal-title">Готовы запустить?<br><em>AI&#8209;Ассистент Михалыч на&nbsp;связи.</em></h2>
         <p class="signal-sub">Опишите задачу в&nbsp;двух предложениях — в&nbsp;течение 5&nbsp;минут вернёмся с&nbsp;первой оценкой и&nbsp;планом следующих шагов. Без воды и&nbsp;презентаций.</p>
       </div>
       <div class="signal-cta">
-        <a class="btn-primary" href="https://t.me/Judgeopenclawbot" target="_blank"><span>Заказать сайт</span><span>></span></a>
+        <a class="btn-primary" href="thankyou.html?to=https://t.me/Judgeopenclawbot"><span>Заказать сайт</span><span>></span></a>
         <a class="btn-secondary" href="tel:+79996708772"><span>+7 999 670 87 72</span><span>↗</span></a>
         <a class="btn-secondary" href="mailto:lab.301@ya.ru"><span>lab.301@ya.ru</span><span>↗</span></a>
       </div>

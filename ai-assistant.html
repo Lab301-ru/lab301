@@ -91,15 +91,21 @@
     .msg { max-width: 88%; }
     .chat-vis { padding: 16px; }
   }
-  .mik-hero img {
+  .mik-hero > img {
     width: 200px; height: auto; display:block;
     filter: drop-shadow(0 0 50px var(--acc-glow));
   }
-  .mik-hero-info { font-family: var(--font-m); font-size:12px; line-height:1.7; color: var(--ink-2); }
+  .mik-hero-info { display:flex; gap:28px; align-items:center; font-family: var(--font-m); font-size:12px; line-height:1.7; color: var(--ink-2); }
   .mik-hero-info b { color: var(--acc); font-weight:500; }
+  .mik-hero-info .rows { flex:1; min-width:0; }
   .mik-hero-info .row { display:flex; justify-content:space-between; gap: 14px; padding: 4px 0; border-bottom: 1px dashed var(--rule); }
   .mik-hero-info .row:last-child { border-bottom: none; }
   .mik-hero-info .k { color: var(--ink-3); letter-spacing:.14em; text-transform:uppercase; font-size:10px; }
+  .mik-main-portrait {
+    width: 200px; height: auto; flex-shrink:0; display:block;
+    filter: drop-shadow(0 0 50px var(--acc-glow));
+  }
+  @media (max-width: 720px) { .mik-main-portrait { display:none; } }
 
   /* 5-steps timeline */
   .timeline { position:relative; margin-top:48px; }
@@ -139,7 +145,7 @@
       <aside class="meta reveal">
         <p class="lede">AI‑ассистент, который <b>отвечает 24/7</b>, квалифицирует лиды, заводит карточки в&nbsp;CRM и&nbsp;закрывает <b>30–60% входящих</b> без участия оператора.</p>
         <div class="cta-row">
-          <a class="btn-primary" href="https://t.me/Judgeopenclawbot" target="_blank">Протестировать Михалыча <span>→</span></a>
+          <a class="btn-primary" href="thankyou.html?to=https://t.me/Judgeopenclawbot">Протестировать Михалыча <span>→</span></a>
           <a class="btn-secondary" href="#how">Как работает</a>
         </div>
       </aside>
@@ -148,12 +154,15 @@
     <div class="mik-hero reveal">
       <img src="ai_assistant_waving.avif" alt="Михалыч — AI ассистент LAB301" width="200" height="260" loading="eager" fetchpriority="high" decoding="async" />
       <div class="mik-hero-info">
-        <div class="row"><span class="k">Имя</span><span><b>Михалыч</b> · AI Sales Manager v5.0</span></div>
-        <div class="row"><span class="k">Каналы</span><span style="color:#16a34a;">Telegram · Web · WhatsApp</span></div>
-        <div class="row"><span class="k">Модель</span><span>Claude · GPT‑5 · RAG</span></div>
-        <div class="row"><span class="k">Языки</span><span>RU · EN · ES</span></div>
-        <div class="row"><span class="k">Память</span><span>векторная БД · полный лог диалога</span></div>
-        <div class="row"><span class="k">SLA отклика</span><span><b>≤ 2 секунды</b></span></div>
+        <div class="rows">
+          <div class="row"><span class="k">Имя</span><span><b>Михалыч</b> · AI Sales Manager v5.0</span></div>
+          <div class="row"><span class="k">Каналы</span><span style="color:#16a34a;">Telegram · Web · WhatsApp</span></div>
+          <div class="row"><span class="k">Модель</span><span>Claude · GPT‑5 · RAG</span></div>
+          <div class="row"><span class="k">Языки</span><span>RU · EN · ES</span></div>
+          <div class="row"><span class="k">Память</span><span>векторная БД · полный лог диалога</span></div>
+          <div class="row"><span class="k">SLA отклика</span><span><b>≤ 2 секунды</b></span></div>
+        </div>
+        <img src="ai_assistant_main.avif" alt="Михалыч" class="mik-main-portrait" width="280" height="360" loading="eager" decoding="async" />
       </div>
     </div>
 
@@ -434,14 +443,14 @@
         <tbody>
           <tr style="border-bottom:1px solid var(--rule);">
             <td style="padding:12px 16px; color:var(--ink-2);">Меню и кнопки</td>
-            <td style="text-align:center; padding:12px; color:var(--ink-3);">✓</td>
-            <td style="text-align:center; padding:12px; color:var(--ink-3);">✓</td>
+            <td style="text-align:center; padding:12px; color:#16a34a; font-weight:600;">✓</td>
+            <td style="text-align:center; padding:12px; color:#16a34a; font-weight:600;">✓</td>
             <td style="text-align:center; padding:12px; background:rgba(22,163,74,0.10); color:#16a34a; font-weight:700;">✓✓</td>
           </tr>
           <tr style="border-bottom:1px solid var(--rule);">
             <td style="padding:12px 16px; color:var(--ink-2);">AI-диалог (LLM)</td>
             <td style="text-align:center; padding:12px; color:var(--ink-3);">—</td>
-            <td style="text-align:center; padding:12px; color:var(--ink-3);">✓</td>
+            <td style="text-align:center; padding:12px; color:#16a34a; font-weight:600;">✓</td>
             <td style="text-align:center; padding:12px; background:rgba(22,163,74,0.10); color:#16a34a; font-weight:700;">✓✓</td>
           </tr>
           <tr style="border-bottom:1px solid var(--rule);">
@@ -591,7 +600,7 @@
         <p class="signal-sub">Напишите ему в&nbsp;Telegram — он&nbsp;покажет, как поведёт ваших клиентов, и&nbsp;соберёт бриф на&nbsp;внедрение. Без давления, без презентаций.</p>
       </div>
       <div class="signal-cta">
-        <a class="btn-primary" href="https://t.me/Judgeopenclawbot" target="_blank"><span>Попробовать демо</span><span>></span></a>
+        <a class="btn-primary" href="thankyou.html?to=https://t.me/Judgeopenclawbot"><span>Попробовать демо</span><span>></span></a>
         <a class="btn-secondary" href="contacts.html"><span>Все контакты</span><span>↗</span></a>
       </div>
     </div>
