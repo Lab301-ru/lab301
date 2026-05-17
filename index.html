@@ -399,47 +399,52 @@
       -webkit-animation: hfv-dash .6s linear infinite;
               animation: hfv-dash .6s linear infinite;
       will-change: transform;
+      -webkit-transform: translateZ(0); transform: translateZ(0);
+      -webkit-backface-visibility: hidden; backface-visibility: hidden;
     }
-    /* Mobile: per-colour icon glow */
+    /* Mobile: per-colour icon static tint (только opacity/transform анимируем) */
     .hfv-step[data-vstep="0"] .hfv-icon,
     .hfv-step[data-vstep="2"] .hfv-icon,
-    .hfv-step[data-vstep="3"] .hfv-icon {
-      filter: drop-shadow(0 0 5px rgba(232,32,47,0.55));
-    }
+    .hfv-step[data-vstep="3"] .hfv-icon { opacity: .85; }
     .hfv-step[data-vstep="1"] .hfv-icon {
+      will-change: opacity, transform;
+      -webkit-backface-visibility: hidden; backface-visibility: hidden;
       -webkit-animation: hfv-pulse-white 1.8s ease-in-out infinite;
               animation: hfv-pulse-white 1.8s ease-in-out infinite;
     }
     .hfv-step[data-vstep="4"] .hfv-icon {
+      will-change: opacity, transform;
+      -webkit-backface-visibility: hidden; backface-visibility: hidden;
       -webkit-animation: hfv-pulse-green 1.8s ease-in-out infinite;
               animation: hfv-pulse-green 1.8s ease-in-out infinite;
     }
   }
 
   /* ── Mobile flow keyframes — вне @media (iOS Safari не поддерживает @keyframes внутри media) ── */
+  /* Только transform + opacity — единственное что гарантированно работает на iOS */
   @-webkit-keyframes hfv-dash {
-    from { -webkit-transform: translateY(0); transform: translateY(0); }
-    to   { -webkit-transform: translateY(8px); transform: translateY(8px); }
+    from { -webkit-transform: translateZ(0) translateY(0);   transform: translateZ(0) translateY(0); }
+    to   { -webkit-transform: translateZ(0) translateY(8px); transform: translateZ(0) translateY(8px); }
   }
   @keyframes hfv-dash {
-    from { transform: translateY(0); }
-    to   { transform: translateY(8px); }
+    from { transform: translateZ(0) translateY(0); }
+    to   { transform: translateZ(0) translateY(8px); }
   }
   @-webkit-keyframes hfv-pulse-white {
-    0%,100% { filter: drop-shadow(0 0 3px rgba(255,255,255,0.25)); }
-    50%      { filter: drop-shadow(0 0 12px rgba(255,255,255,0.80)); }
+    0%,100% { opacity:.4;  -webkit-transform: translateZ(0) scale(1);    transform: translateZ(0) scale(1); }
+    50%      { opacity:1;   -webkit-transform: translateZ(0) scale(1.18); transform: translateZ(0) scale(1.18); }
   }
   @keyframes hfv-pulse-white {
-    0%,100% { filter: drop-shadow(0 0 3px rgba(255,255,255,0.25)); }
-    50%      { filter: drop-shadow(0 0 12px rgba(255,255,255,0.80)); }
+    0%,100% { opacity:.4;  transform: translateZ(0) scale(1); }
+    50%      { opacity:1;   transform: translateZ(0) scale(1.18); }
   }
   @-webkit-keyframes hfv-pulse-green {
-    0%,100% { filter: drop-shadow(0 0 4px rgba(22,163,74,0.40)); color: #16a34a; }
-    50%      { filter: drop-shadow(0 0 14px rgba(22,163,74,0.95)); color: #22c55e; }
+    0%,100% { opacity:.45; -webkit-transform: translateZ(0) scale(1);    transform: translateZ(0) scale(1); }
+    50%      { opacity:1;   -webkit-transform: translateZ(0) scale(1.22); transform: translateZ(0) scale(1.22); }
   }
   @keyframes hfv-pulse-green {
-    0%,100% { filter: drop-shadow(0 0 4px rgba(22,163,74,0.40)); color: #16a34a; }
-    50%      { filter: drop-shadow(0 0 14px rgba(22,163,74,0.95)); color: #22c55e; }
+    0%,100% { opacity:.45; transform: translateZ(0) scale(1); }
+    50%      { opacity:1;   transform: translateZ(0) scale(1.22); }
   }
 </style>
 </head>
@@ -746,7 +751,7 @@
         </div>
       </article>
       <article class="arc-card arc-card--link">
-        <a class="arc-card-overlay" href="https://xn--36-mlcmaw0akk.xn--p1ai/" target="_blank" rel="noopener" aria-label="Ремсити36 — перейти на сайт"></a>
+        <a class="arc-card-overlay" href="https://remcity36.ru/" target="_blank" rel="noopener" aria-label="Ремсити36 — перейти на сайт"></a>
         <div class="arc-vis" style="--mx:75%;--my:30%; background-image: url('remcity36_cover.avif'); background-size: cover; background-position: center;">
           <span class="tag">СЕРВИС · РЕМОНТ · 2026</span><span class="stamp">302</span>
         </div>

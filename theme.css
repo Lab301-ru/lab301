@@ -195,11 +195,12 @@ nav.topnav {
   position:relative; overflow:hidden;
 }
 .nav-cta::before {
-  content:""; position:absolute; inset:0;
-  background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,0.18) 50%,transparent 100%);
-  transform:translateX(-150%);
-  -webkit-animation:cta-shimmer 3s ease 2s infinite;
-          animation:cta-shimmer 3s ease 2s infinite;
+  content:''; position:absolute;
+  top:0; left:0; bottom:0; width:55%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.24),transparent);
+  transform:translateX(-200%);
+  -webkit-animation:nav-sweep 3s ease-in-out infinite;
+          animation:nav-sweep 3s ease-in-out infinite;
   pointer-events:none;
 }
 .nav-cta:hover { transform:translateY(-1px); }
@@ -653,15 +654,21 @@ footer { padding: 64px 0 28px; border-top: 1px solid var(--rule); position:relat
   text-decoration: none; white-space: nowrap;
   box-shadow: 0 4px 24px var(--acc-glow);
   transition: transform .2s ease, box-shadow .2s ease;
-  overflow: hidden;
+  /* clip-path вместо overflow:hidden — работает на position:fixed в iOS Safari */
+  -webkit-clip-path: inset(0 round 7px);
+          clip-path: inset(0 round 7px);
+  -webkit-transform: translateZ(0); transform: translateZ(0);
 }
 .fab-order::before {
-  content:""; position:absolute; inset:0;
-  background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,0.18) 50%,transparent 100%);
-  transform:translateX(-150%);
-  -webkit-animation:cta-shimmer 3s ease 2s infinite;
-          animation:cta-shimmer 3s ease 2s infinite;
-  pointer-events:none;
+  content:''; position:absolute;
+  top:0; left:0; bottom:0; width:55%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.24),transparent);
+  -webkit-transform: translateX(-200%); transform: translateX(-200%);
+  will-change: transform;
+  -webkit-backface-visibility: hidden; backface-visibility: hidden;
+  -webkit-animation: nav-sweep 3s ease-in-out infinite;
+          animation: nav-sweep 3s ease-in-out infinite;
+  pointer-events: none;
 }
 .fab-order:hover { transform: translateY(-2px); box-shadow: 0 8px 28px var(--acc-glow); }
 
@@ -890,16 +897,16 @@ footer { padding: 64px 0 28px; border-top: 1px solid var(--rule); position:relat
   box-shadow: 0 4px 18px rgba(196,34,58,0.30);
 }
 
-/* ── CTA shimmer: световой проход раз в 3 секунды ── */
-@-webkit-keyframes cta-shimmer {
-  0%   { -webkit-transform: translateX(-150%); transform: translateX(-150%); }
-  47%  { -webkit-transform: translateX(200%);  transform: translateX(200%); }
-  100% { -webkit-transform: translateX(200%);  transform: translateX(200%); }
+/* ── CTA sweep: световой проход раз в 3 секунды ── */
+@-webkit-keyframes nav-sweep {
+  0%   { -webkit-transform: translateX(-200%); transform: translateX(-200%); }
+  18%  { -webkit-transform: translateX(300%);  transform: translateX(300%); }
+  100% { -webkit-transform: translateX(-200%); transform: translateX(-200%); }
 }
-@keyframes cta-shimmer {
-  0%   { transform: translateX(-150%); }
-  47%  { transform: translateX(200%); }
-  100% { transform: translateX(200%); }
+@keyframes nav-sweep {
+  0%   { transform: translateX(-200%); }
+  18%  { transform: translateX(300%); }
+  100% { transform: translateX(-200%); }
 }
 
 /* ── Mobile performance: отключаем тяжёлые эффекты ── */
