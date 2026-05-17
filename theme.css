@@ -198,7 +198,8 @@ nav.topnav {
   content:""; position:absolute; inset:0;
   background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,0.18) 50%,transparent 100%);
   transform:translateX(-150%);
-  animation:cta-shimmer 3s ease 2s infinite;
+  -webkit-animation:cta-shimmer 3s ease 2s infinite;
+          animation:cta-shimmer 3s ease 2s infinite;
   pointer-events:none;
 }
 .nav-cta:hover { transform:translateY(-1px); }
@@ -658,7 +659,8 @@ footer { padding: 64px 0 28px; border-top: 1px solid var(--rule); position:relat
   content:""; position:absolute; inset:0;
   background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,0.18) 50%,transparent 100%);
   transform:translateX(-150%);
-  animation:cta-shimmer 3s ease 2s infinite;
+  -webkit-animation:cta-shimmer 3s ease 2s infinite;
+          animation:cta-shimmer 3s ease 2s infinite;
   pointer-events:none;
 }
 .fab-order:hover { transform: translateY(-2px); box-shadow: 0 8px 28px var(--acc-glow); }
@@ -888,7 +890,12 @@ footer { padding: 64px 0 28px; border-top: 1px solid var(--rule); position:relat
   box-shadow: 0 4px 18px rgba(196,34,58,0.30);
 }
 
-/* ── CTA shimmer: световой проход раз в 5 секунд ── */
+/* ── CTA shimmer: световой проход раз в 3 секунды ── */
+@-webkit-keyframes cta-shimmer {
+  0%   { -webkit-transform: translateX(-150%); transform: translateX(-150%); }
+  47%  { -webkit-transform: translateX(200%);  transform: translateX(200%); }
+  100% { -webkit-transform: translateX(200%);  transform: translateX(200%); }
+}
 @keyframes cta-shimmer {
   0%   { transform: translateX(-150%); }
   47%  { transform: translateX(200%); }

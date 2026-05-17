@@ -396,12 +396,9 @@
         #16a34a 0, #16a34a 4px,
         transparent 4px, transparent 8px
       );
-      animation: hfv-dash .6s linear infinite;
+      -webkit-animation: hfv-dash .6s linear infinite;
+              animation: hfv-dash .6s linear infinite;
       will-change: transform;
-    }
-    @keyframes hfv-dash {
-      from { transform: translateY(0); }
-      to   { transform: translateY(8px); }
     }
     /* Mobile: per-colour icon glow */
     .hfv-step[data-vstep="0"] .hfv-icon,
@@ -410,19 +407,39 @@
       filter: drop-shadow(0 0 5px rgba(232,32,47,0.55));
     }
     .hfv-step[data-vstep="1"] .hfv-icon {
-      animation: hfv-pulse-white 1.8s ease-in-out infinite;
-    }
-    @keyframes hfv-pulse-white {
-      0%,100% { filter: drop-shadow(0 0 3px rgba(255,255,255,0.25)); }
-      50%      { filter: drop-shadow(0 0 12px rgba(255,255,255,0.80)); }
+      -webkit-animation: hfv-pulse-white 1.8s ease-in-out infinite;
+              animation: hfv-pulse-white 1.8s ease-in-out infinite;
     }
     .hfv-step[data-vstep="4"] .hfv-icon {
-      animation: hfv-pulse-green 1.8s ease-in-out infinite;
+      -webkit-animation: hfv-pulse-green 1.8s ease-in-out infinite;
+              animation: hfv-pulse-green 1.8s ease-in-out infinite;
     }
-    @keyframes hfv-pulse-green {
-      0%,100% { filter: drop-shadow(0 0 4px rgba(22,163,74,0.40)); color: #16a34a; }
-      50%      { filter: drop-shadow(0 0 14px rgba(22,163,74,0.95)); color: #22c55e; }
-    }
+  }
+
+  /* ── Mobile flow keyframes — вне @media (iOS Safari не поддерживает @keyframes внутри media) ── */
+  @-webkit-keyframes hfv-dash {
+    from { -webkit-transform: translateY(0); transform: translateY(0); }
+    to   { -webkit-transform: translateY(8px); transform: translateY(8px); }
+  }
+  @keyframes hfv-dash {
+    from { transform: translateY(0); }
+    to   { transform: translateY(8px); }
+  }
+  @-webkit-keyframes hfv-pulse-white {
+    0%,100% { filter: drop-shadow(0 0 3px rgba(255,255,255,0.25)); }
+    50%      { filter: drop-shadow(0 0 12px rgba(255,255,255,0.80)); }
+  }
+  @keyframes hfv-pulse-white {
+    0%,100% { filter: drop-shadow(0 0 3px rgba(255,255,255,0.25)); }
+    50%      { filter: drop-shadow(0 0 12px rgba(255,255,255,0.80)); }
+  }
+  @-webkit-keyframes hfv-pulse-green {
+    0%,100% { filter: drop-shadow(0 0 4px rgba(22,163,74,0.40)); color: #16a34a; }
+    50%      { filter: drop-shadow(0 0 14px rgba(22,163,74,0.95)); color: #22c55e; }
+  }
+  @keyframes hfv-pulse-green {
+    0%,100% { filter: drop-shadow(0 0 4px rgba(22,163,74,0.40)); color: #16a34a; }
+    50%      { filter: drop-shadow(0 0 14px rgba(22,163,74,0.95)); color: #22c55e; }
   }
 </style>
 </head>
