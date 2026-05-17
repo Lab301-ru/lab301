@@ -87,8 +87,7 @@
     { id:'ai',       i:'03', label:t.ai,       href:'ai-assistant.html' },
     { id:'process',  i:'04', label:t.process,  href:'process.html' },
     { id:'cases',    i:'05', label:t.cases,    href:'cases.html' },
-    { id:'faq',      i:'06', label:t.faq,      href:'faq.html' },
-    { id:'contacts', i:'07', label:t.contacts, href:'contacts.html' },
+    { id:'contacts', i:'06', label:t.contacts, href:'contacts.html' },
   ];
 
   const now = new Date();
