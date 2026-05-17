@@ -160,7 +160,7 @@
               <span>${t.fPowered}</span>
               <img src="image-151.avif" alt="Mikhalych AI" class="f-powered-img" width="1768" height="363" loading="lazy" decoding="async" />
             </div>
-            <div class="f-stack">OpenAI &middot; Anthropic &middot; Next.js &middot; Vercel &middot; Figma &middot; n8n &middot; Netlify &middot; Cloudflare &middot; GitHub &middot; GitLab &middot; Render &middot; Supabase &middot; Yandex &middot; Telegram &middot; Bitrix24 &middot; Tilda &middot; REG.RU &middot; AmoCRM &middot; YooKassa &middot; Tinkoff &middot; VK</div>
+            <div class="f-stack">OpenAI &middot; Anthropic &middot; Next.js &middot; React.js &middot; Vercel &middot; Figma &middot; n8n &middot; Netlify &middot; Cloudflare &middot; GitHub &middot; GitLab &middot; Render &middot; Supabase &middot; Yandex &middot; Telegram &middot; Bitrix24 &middot; REG.RU &middot; AmoCRM &middot; YooKassa &middot; Tinkoff &middot; VK</div>
           </div>
           <div class="f-col">
             <h5>${t.fNav}</h5>
