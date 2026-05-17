@@ -396,55 +396,54 @@
         #16a34a 0, #16a34a 4px,
         transparent 4px, transparent 8px
       );
+      will-change: transform;
+      -webkit-backface-visibility: hidden; backface-visibility: hidden;
       -webkit-animation: hfv-dash .6s linear infinite;
               animation: hfv-dash .6s linear infinite;
-      will-change: transform;
-      -webkit-transform: translateZ(0); transform: translateZ(0);
-      -webkit-backface-visibility: hidden; backface-visibility: hidden;
     }
-    /* Mobile: per-colour icon static tint (только opacity/transform анимируем) */
+    /* Mobile: статичные иконки */
     .hfv-step[data-vstep="0"] .hfv-icon,
     .hfv-step[data-vstep="2"] .hfv-icon,
     .hfv-step[data-vstep="3"] .hfv-icon { opacity: .85; }
+    /* AI Обработка — пульс белым (только opacity) */
     .hfv-step[data-vstep="1"] .hfv-icon {
-      will-change: opacity, transform;
-      -webkit-backface-visibility: hidden; backface-visibility: hidden;
+      will-change: opacity;
       -webkit-animation: hfv-pulse-white 1.8s ease-in-out infinite;
               animation: hfv-pulse-white 1.8s ease-in-out infinite;
     }
+    /* Исполнение — пульс зелёным (только opacity) */
     .hfv-step[data-vstep="4"] .hfv-icon {
-      will-change: opacity, transform;
-      -webkit-backface-visibility: hidden; backface-visibility: hidden;
+      will-change: opacity;
       -webkit-animation: hfv-pulse-green 1.8s ease-in-out infinite;
               animation: hfv-pulse-green 1.8s ease-in-out infinite;
     }
   }
 
-  /* ── Mobile flow keyframes — вне @media (iOS Safari не поддерживает @keyframes внутри media) ── */
-  /* Только transform + opacity — единственное что гарантированно работает на iOS */
+  /* ── Mobile flow keyframes — ВНЕ @media (iOS Safari игнорирует @keyframes внутри media) ── */
+  /* Только одиночный transform или opacity — translateZ(0) в keyframes конфликтует с will-change */
   @-webkit-keyframes hfv-dash {
-    from { -webkit-transform: translateZ(0) translateY(0);   transform: translateZ(0) translateY(0); }
-    to   { -webkit-transform: translateZ(0) translateY(8px); transform: translateZ(0) translateY(8px); }
+    from { -webkit-transform: translateY(0);   transform: translateY(0); }
+    to   { -webkit-transform: translateY(8px); transform: translateY(8px); }
   }
   @keyframes hfv-dash {
-    from { transform: translateZ(0) translateY(0); }
-    to   { transform: translateZ(0) translateY(8px); }
+    from { transform: translateY(0); }
+    to   { transform: translateY(8px); }
   }
   @-webkit-keyframes hfv-pulse-white {
-    0%,100% { opacity:.4;  -webkit-transform: translateZ(0) scale(1);    transform: translateZ(0) scale(1); }
-    50%      { opacity:1;   -webkit-transform: translateZ(0) scale(1.18); transform: translateZ(0) scale(1.18); }
+    0%, 100% { opacity: 0.3; }
+    50%      { opacity: 1;   }
   }
   @keyframes hfv-pulse-white {
-    0%,100% { opacity:.4;  transform: translateZ(0) scale(1); }
-    50%      { opacity:1;   transform: translateZ(0) scale(1.18); }
+    0%, 100% { opacity: 0.3; }
+    50%      { opacity: 1;   }
   }
   @-webkit-keyframes hfv-pulse-green {
-    0%,100% { opacity:.45; -webkit-transform: translateZ(0) scale(1);    transform: translateZ(0) scale(1); }
-    50%      { opacity:1;   -webkit-transform: translateZ(0) scale(1.22); transform: translateZ(0) scale(1.22); }
+    0%, 100% { opacity: 0.35; }
+    50%      { opacity: 1;    }
   }
   @keyframes hfv-pulse-green {
-    0%,100% { opacity:.45; transform: translateZ(0) scale(1); }
-    50%      { opacity:1;   transform: translateZ(0) scale(1.22); }
+    0%, 100% { opacity: 0.35; }
+    50%      { opacity: 1;    }
   }
 </style>
 </head>
