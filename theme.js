@@ -203,7 +203,7 @@
         </div>
         <div class="f-bot">
           <span>${t.fCopy}</span>
-          <span>Built for humans. <span style="color:var(--acc)">Optimized by AI.</span></span>
+          <span>Built for humans with <button id="f-heart" aria-label="Made with love" style="background:none;border:none;cursor:pointer;padding:0 1px;font-size:15px;line-height:1;color:#E8192C;display:inline;vertical-align:middle;transition:transform .15s ease;will-change:transform;">❤</button> optimized by AI.</span>
         </div>
       </div>
     </footer>`;
@@ -248,6 +248,51 @@
     try { localStorage.setItem('lab301.bg', isGrey ? '' : 'grey'); } catch(e){}
   };
   document.querySelectorAll('.bg-toggle').forEach(b => b.addEventListener('click', bgToggleHandler));
+
+  // ── Footer heart confetti
+  const fHeart = document.getElementById('f-heart');
+  if (fHeart) {
+    fHeart.addEventListener('mouseenter', function() { this.style.transform = 'scale(1.3)'; });
+    fHeart.addEventListener('mouseleave', function() { this.style.transform = ''; });
+    fHeart.addEventListener('click', function(e) {
+      const rect = this.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const colors = ['#E8192C','#FF3B47','#FF6B6B','#ff8fa3','#C4223A','#ff4d6d'];
+      const hearts = ['❤','🩷','❤','❤','🩷','❤'];
+      for (var i = 0; i < 28; i++) {
+        (function(idx) {
+          setTimeout(function() {
+            var h = document.createElement('span');
+            h.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+            var angle = (Math.random() * 360) * Math.PI / 180;
+            var dist  = 50 + Math.random() * 90;
+            var size  = 10 + Math.random() * 16;
+            var dur   = 0.7 + Math.random() * 0.7;
+            var tx    = Math.cos(angle) * dist;
+            var ty    = Math.sin(angle) * dist - 60 - Math.random() * 40;
+            h.style.cssText = 'position:fixed;left:' + cx + 'px;top:' + cy + 'px;' +
+              'font-size:' + size + 'px;color:' + colors[Math.floor(Math.random()*colors.length)] + ';' +
+              'pointer-events:none;z-index:9999;transform:translate(-50%,-50%);' +
+              'transition:transform ' + dur + 's cubic-bezier(.2,.8,.4,1),opacity ' + dur + 's ease-out;' +
+              'opacity:1;user-select:none;';
+            document.body.appendChild(h);
+            requestAnimationFrame(function() {
+              requestAnimationFrame(function() {
+                h.style.transform = 'translate(calc(-50% + ' + tx + 'px),calc(-50% + ' + ty + 'px)) scale(' + (0.2 + Math.random() * 0.6) + ')';
+                h.style.opacity = '0';
+              });
+            });
+            setTimeout(function() { if (h.parentNode) h.parentNode.removeChild(h); }, (dur + 0.15) * 1000);
+          }, idx * 30);
+        })(i);
+      }
+      // Pulse the heart itself
+      this.style.transform = 'scale(1.6)';
+      var self = this;
+      setTimeout(function() { self.style.transform = ''; }, 250);
+    });
+  }
 
   // ── reveal on scroll
   const io = new IntersectionObserver(es => {
